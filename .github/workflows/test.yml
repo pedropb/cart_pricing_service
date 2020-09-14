@@ -1,6 +1,6 @@
 name: Test
 
-on: 
+on:
   pull_request: {}
   push:
     branches: master
@@ -22,11 +22,11 @@ jobs:
           pip install pipenv
           pipenv install --deploy --dev
 
-      - run: pipenv run isort --recursive --diff
+      - run: pipenv run isort --recursive --diff .
       - run: pipenv run black --check .
       - run: pipenv run flake8
       - run: pipenv run mypy
-      - run: pipenv run pytest --cov --cov-fail-under=100
+      - run: pipenv run pytest --cov --cov-fail-under=90
 
   docker-image:
     runs-on: ubuntu-latest
@@ -38,4 +38,8 @@ jobs:
 
       - name: Smoke test docker image
         run: |
-          docker run --rm cart_pricing_service:test 10
+          docker run --rm --interactive cart_pricing_service:test 10 <<EOF | grep '$43.00'
+          1
+          2
+          3
+          EOF
