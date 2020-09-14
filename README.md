@@ -39,6 +39,12 @@ Your cart total is: $43.00
 # Install dependencies
 pipenv install --dev
 
+# Activating environment
+pipenv shell
+
+# Running tests
+pytest
+
 # Setup pre-commit and pre-push hooks
 pipenv run pre-commit install -t pre-commit
 pipenv run pre-commit install -t pre-push
