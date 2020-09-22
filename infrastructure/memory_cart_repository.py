@@ -1,6 +1,6 @@
 from typing import Dict
 
-from cart_pricing_service.cart import Cart, CartId, CartRepository
+from domain.cart import Cart, CartId, CartRepository
 
 
 class NotFoundError(Exception):

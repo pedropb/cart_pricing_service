@@ -1,6 +1,6 @@
 import pytest
 
-from cart_pricing_service.cart import Cart
+from domain.cart import Cart
 from infrastructure.memory_cart_repository import MemoryCartRepository, NotFoundError
 
 

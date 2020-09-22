@@ -3,9 +3,9 @@ from unittest.mock import Mock
 
 import pytest
 
-from cart_pricing_service.cart import Cart
-from cart_pricing_service.discount import ApplesDiscount, GrapesDiscount
-from cart_pricing_service.inventory import APPLES, GRAPES
+from domain.cart import Cart
+from domain.discount import ApplesDiscount, GrapesDiscount
+from domain.inventory import APPLES, GRAPES
 
 
 class TestDiscounts:

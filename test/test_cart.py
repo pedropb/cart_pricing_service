@@ -1,5 +1,5 @@
-from cart_pricing_service.cart import Cart, DiscountPolicy
-from cart_pricing_service.inventory import APPLES, BANANAS, GRAPES
+from domain.cart import Cart, DiscountPolicy
+from domain.inventory import APPLES, BANANAS, GRAPES
 
 
 class TestCart:

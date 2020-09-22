@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from typing import Dict, List
 from uuid import UUID, uuid4
 
-from cart_pricing_service.inventory import Item
+from domain.inventory import Item
 
 CartId = UUID
 

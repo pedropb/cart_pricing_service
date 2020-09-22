@@ -1,6 +1,6 @@
-from cart_pricing_service.cart import Cart
-from cart_pricing_service.discount import ApplesDiscount, GrapesDiscount
-from cart_pricing_service.inventory import APPLES, BANANAS, GRAPES
+from domain.cart import Cart
+from domain.discount import ApplesDiscount, GrapesDiscount
+from domain.inventory import APPLES, BANANAS, GRAPES
 
 if __name__ == "__main__":
     apple_count = int(input(f"How many {APPLES.name} (${APPLES.price/100:.2f})? "))

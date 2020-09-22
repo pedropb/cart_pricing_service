@@ -16,4 +16,4 @@ jobs:
         registry: docker.pkg.github.com
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        image_name: ${{ github.repository }}/cart_pricing_service
+        image_name: ${{ github.repository }}/domain

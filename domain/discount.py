@@ -1,7 +1,7 @@
 from math import floor
 
-from cart_pricing_service.cart import Cart, DiscountPolicy
-from cart_pricing_service.inventory import APPLES, GRAPES
+from domain.cart import Cart, DiscountPolicy
+from domain.inventory import APPLES, GRAPES
 
 
 class ApplesDiscount(DiscountPolicy):
