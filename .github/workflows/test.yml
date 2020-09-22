@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build docker image
-        run: docker build . -t domain:test
+        run: docker build . -t cart_pricing_service:test
 
       - name: Smoke test docker image
         run: |
