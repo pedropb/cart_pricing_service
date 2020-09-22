@@ -12,11 +12,11 @@ CartId = UUID
 
 class Cart:
     id: CartId
-    items: Dict[str, CartItem]
+    _items: Dict[str, _CartItem]
 
     def __init__(self) -> None:
         self.id = uuid4()
-        self.items = {}
+        self._items = {}
 
     def get_price(self, discounts: List[DiscountPolicy] = None) -> int:
         if discounts is None:
@@ -24,22 +24,22 @@ class Cart:
 
         price_before_discount = sum(
             cart_item.item.price * cart_item.quantity
-            for cart_item in self.items.values()
+            for cart_item in self._items.values()
         )
         discount = sum(policy.get_discount(self) for policy in discounts)
         return price_before_discount - discount
 
     def get_item_count(self, item: Item = None) -> int:
         if item is None:
-            return sum(cart_item.quantity for cart_item in self.items.values())
+            return sum(cart_item.quantity for cart_item in self._items.values())
         else:
-            return self.items[item.name].quantity if item.name in self.items else 0
+            return self._items[item.name].quantity if item.name in self._items else 0
 
     def add_item(self, item: Item, quantity: int = 1) -> Cart:
-        if item.name in self.items:
-            quantity += self.items[item.name].quantity
+        if item.name in self._items:
+            quantity += self._items[item.name].quantity
 
-        self.items[item.name] = CartItem(item, quantity)
+        self._items[item.name] = _CartItem(item, quantity)
 
         return self
 
@@ -68,7 +68,7 @@ class CartRepository(ABC):
 
 
 @dataclass(frozen=True)
-class CartItem:
+class _CartItem:
     item: Item
     quantity: int
 
