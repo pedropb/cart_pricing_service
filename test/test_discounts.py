@@ -17,7 +17,7 @@ class TestDiscounts:
         cart_mock = mock.create_autospec(Cart)
         cart_mock.get_item_count = Mock(return_value=apple_count)
 
-        assert system_under_test.get_discount(cart_mock) == expected_discount
+        assert system_under_test(cart_mock) == expected_discount
 
     @pytest.mark.parametrize(
         "grape_count,expected_discount",
@@ -28,4 +28,4 @@ class TestDiscounts:
         cart_mock = mock.create_autospec(Cart)
         cart_mock.get_item_count = Mock(return_value=grape_count)
 
-        assert system_under_test.get_discount(cart_mock) == expected_discount
+        assert system_under_test(cart_mock) == expected_discount

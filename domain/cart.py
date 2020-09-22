@@ -18,7 +18,7 @@ class Cart:
         self.id = uuid4()
         self._items = {}
 
-    def get_price(self, discounts: List[DiscountPolicy] = None) -> int:
+    def get_price(self, discounts: List[Discount] = None) -> int:
         if discounts is None:
             discounts = []
 
@@ -26,7 +26,7 @@ class Cart:
             cart_item.item.price * cart_item.quantity
             for cart_item in self._items.values()
         )
-        discount = sum(policy.get_discount(self) for policy in discounts)
+        discount = sum(discount(self) for discount in discounts)
         return price_before_discount - discount
 
     def get_item_count(self, item: Item = None) -> int:
@@ -52,9 +52,9 @@ class Cart:
         return cart
 
 
-class DiscountPolicy(ABC):
+class Discount(ABC):
     @abstractmethod
-    def get_discount(self, cart: Cart) -> int:
+    def __call__(self, cart: Cart) -> int:
         return 0
 
 

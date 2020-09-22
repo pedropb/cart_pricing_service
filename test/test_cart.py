@@ -1,4 +1,4 @@
-from domain.cart import Cart, DiscountPolicy
+from domain.cart import Cart, Discount
 from domain.inventory import APPLES, BANANAS, GRAPES
 
 
@@ -19,8 +19,8 @@ class TestCart:
     def test_get_price(self):
         cart = Cart.from_list([[APPLES, 1]])
 
-        class MockDiscount(DiscountPolicy):
-            def get_discount(self, cart: Cart) -> int:
+        class MockDiscount(Discount):
+            def __call__(self, cart: Cart) -> int:
                 return 100  # flat 1 dollar discount
 
         assert cart.get_price([MockDiscount()]) == APPLES.price - 100
