@@ -1,22 +1,21 @@
 from __future__ import annotations
 
-import abc
+from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from typing import Dict, List
+from uuid import UUID, uuid4
 
 from cart_pricing_service.inventory import Item
 
-
-class DiscountPolicy(metaclass=abc.ABCMeta):
-    @abc.abstractmethod
-    def get_discount(self, cart: Cart) -> int:
-        return 0
+CartId = UUID
 
 
 class Cart:
+    id: CartId
     items: Dict[str, CartItem]
 
     def __init__(self) -> None:
+        self.id = uuid4()
         self.items = {}
 
     def get_price(self, discounts: List[DiscountPolicy] = None) -> int:
@@ -51,6 +50,21 @@ class Cart:
             cart.add_item(*item)
 
         return cart
+
+
+class DiscountPolicy(ABC):
+    @abstractmethod
+    def get_discount(self, cart: Cart) -> int:
+        return 0
+
+
+class CartRepository(ABC):
+    @abstractmethod
+    def save(self, cart: Cart) -> Cart:
+        pass
+
+    def fetch(self, cart_id: CartId) -> Cart:
+        pass
 
 
 @dataclass(frozen=True)
