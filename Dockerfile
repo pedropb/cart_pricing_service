@@ -34,5 +34,5 @@ USER appuser
 COPY . .
 
 # Run the executable
-ENTRYPOINT ["python", "-m", "domain"]
+ENTRYPOINT ["python", "-m", "cart_pricing_service"]
 CMD ["10"]
