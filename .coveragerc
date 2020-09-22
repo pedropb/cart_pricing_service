@@ -1,6 +1,6 @@
 [run]
-source = cart_pricing_service
-omit = cart_pricing_service/__main__.py
+source = domain
+omit = domain/__main__.py
 
 [report]
 exclude_lines =
