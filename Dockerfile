@@ -34,4 +34,4 @@ USER appuser
 COPY . .
 
 # Run the executable
-ENTRYPOINT ["python", "main.py"]
+ENTRYPOINT ["python", "-m", "infrastructure.cli"]
